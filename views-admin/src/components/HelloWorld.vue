@@ -57,46 +57,46 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios'
 
 export default {
-  name: "HelloWorld",
-  data() {
+  name: 'HelloWorld',
+  data () {
     return {
-      msg: "Admins"
-    };
+      msg: 'Admins'
+    }
   },
-  mounted() {
-    this.httpGet();
+  mounted () {
+    this.httpGet()
   },
   methods: {
-    httpGet() {
+    httpGet () {
       axios
-        .get("/x/hi")
+        .get('/x/hi')
         .then(res => {
           // 请求数据成功并返回数据。
-          console.info(res);
+          console.info(res)
         })
         .catch(e => {
           if (e.response) {
-            //请求已发出，服务器返回状态码不是2xx。
-            console.info(e.response.data);
-            console.info(e.response.status);
-            console.info(e.response.headers);
+            // 请求已发出，服务器返回状态码不是2xx。
+            console.info(e.response.data)
+            console.info(e.response.status)
+            console.info(e.response.headers)
           } else if (e.request) {
             // 请求已发出，但没有收到响应
             // e.request 在浏览器里是一个XMLHttpRequest实例，
             // 在node中是一个http.ClientRequest实例
-            console.info(e.request);
+            console.info(e.request)
           } else {
-            //发送请求时异常，捕捉到错误
-            console.info("error", e.message);
+            // 发送请求时异常，捕捉到错误
+            console.info('error', e.message)
           }
-          console.info(e.config);
-        });
+          console.info(e.config)
+        })
     }
   }
-};
+}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
