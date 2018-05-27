@@ -9,10 +9,10 @@ module.exports = {
 
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: '/admin',
     proxyTable: {
-      '/api': {
-        target: 'http://local.artyang.vip',
+      '/x': {
+        target: 'http://local.artyang.vip:8080',
         changeOrigin: true,
         pathRewrite: {
           // '^/api': '' 这里注释掉了, 是因为我nginx配置好了拦截api, 所以这里不改写也没问题
@@ -22,7 +22,7 @@ module.exports = {
 
     // Various Dev Server settings
     host: 'local.artyang.vip', // can be overwritten by process.env.HOST
-    port: 8081, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 8091, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
@@ -58,7 +58,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: '/admin',
 
     /**
      * Source Maps
