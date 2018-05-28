@@ -1,5 +1,5 @@
 'use strict'
-// Template version: 1.3.1
+// Template version: 1.2.6
 // see http://vuejs-templates.github.io/webpack for documentation.
 
 const path = require('path')
@@ -9,23 +9,21 @@ module.exports = {
 
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/admin',
+    assetsPublicPath: '/',
     proxyTable: {
-      '/x': {
+      '/api': {
         target: 'http://local.artyang.vip:8080',
         changeOrigin: true,
-        pathRewrite: {
-          // '^/api': '' 这里注释掉了, 是因为我nginx配置好了拦截api, 所以这里不改写也没问题
-        }
+        pathRewrite: {}
       }
     },
 
     // Various Dev Server settings
     host: 'local.artyang.vip', // can be overwritten by process.env.HOST
     port: 8091, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-    autoOpenBrowser: false,
+    autoOpenBrowser: true,
     errorOverlay: true,
-    notifyOnErrors: true,
+    notifyOnErrors: false,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
 
     // Use Eslint Loader?
@@ -41,14 +39,19 @@ module.exports = {
      */
 
     // https://webpack.js.org/configuration/devtool/#development
-    devtool: 'cheap-module-eval-source-map',
+    devtool: '#cheap-source-map',
 
     // If you have problems debugging vue-files in devtools,
     // set this to false - it *may* help
     // https://vue-loader.vuejs.org/en/options.html#cachebusting
     cacheBusting: true,
 
-    cssSourceMap: true
+    // CSS Sourcemaps off by default because relative paths are "buggy"
+    // with this option, according to the CSS-Loader README
+    // (https://github.com/webpack/css-loader#sourcemaps)
+    // In our experience, they generally work as expected,
+    // just be aware of this issue when enabling this option.
+    cssSourceMap: false,
   },
 
   build: {
@@ -58,13 +61,15 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/admin',
+
+    // you can set by youself according to actual condition
+    assetsPublicPath: './',
 
     /**
      * Source Maps
      */
 
-    productionSourceMap: true,
+    productionSourceMap: false,
     // https://webpack.js.org/configuration/devtool/#production
     devtool: '#source-map',
 
