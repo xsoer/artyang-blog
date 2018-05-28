@@ -1,6 +1,7 @@
 export default {
   route: {
     dashboard: '首页',
+    imgList: '图片列表',
     introduction: '简述',
     documentation: '文档',
     permission: '权限测试页',

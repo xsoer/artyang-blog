@@ -1,6 +1,7 @@
 export default {
   route: {
     dashboard: 'Dashboard',
+    imgList: 'Img List',
     introduction: 'Introduction',
     documentation: 'Documentation',
     permission: 'Permission',
