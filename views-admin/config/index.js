@@ -11,11 +11,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api': {
+      '/x': {
         target: 'http://local.artyang.vip:8080',
         changeOrigin: true,
         pathRewrite: {}
-      }
+      },
     },
 
     // Various Dev Server settings

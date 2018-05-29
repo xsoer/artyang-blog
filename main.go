@@ -29,8 +29,8 @@ type Post struct {
 func main() {
     http.HandleFunc("/api/hello", sayhelloName) //设置访问的路由
     http.HandleFunc("/x/hi", sayHi) //设置访问的路由
-    http.HandleFunc("/x/img-index", imgIndex)
-    http.HandleFunc("/x/img-save", imgSave)
+    http.HandleFunc("/x/img/index", imgIndex)
+    http.HandleFunc("/x/img/save", imgSave)
     err := http.ListenAndServe(":8080", nil) //设置监听的端口
     if err != nil {
         log.Fatal("ListenAndServe: ", err)
@@ -50,7 +50,7 @@ func imgIndex(w http.ResponseWriter, r *http.Request) {
     }
     defer rows.Close()
     var id, url, intro, types, created_at string
-    locals := make(map[string]interface{})
+    data := make(map[string]interface{})
     posts := []Post{}
     for rows.Next() {
         err = rows.Scan(&id, &url, &intro, &types, &created_at)
@@ -59,20 +59,22 @@ func imgIndex(w http.ResponseWriter, r *http.Request) {
             posts = append(posts, Post{id, url,intro, types, created_at})
         }
     }
-    locals["posts"] = posts
-    b, err := json.Marshal(locals["posts"])
+    data["items"] = posts
+    data["total"] = 10
+    b, err := json.Marshal(data)
     if err != nil {
         fmt.Println("json.Marshal failed:", err)
         return
     }
-    fmt.Fprint(w, string(b))
+    // w.WriteHeader(http.StatusOK)
+    w.Write([]byte(string(b)))
 }
 
 func imgSave(w http.ResponseWriter, r *http.Request)  {
     if (r.Method != "POST") {
         fmt.Fprint(w, "method Error!")
     }
-    
+
     fmt.Fprint(w, "2323");
 }
 
